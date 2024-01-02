@@ -1,0 +1,91 @@
+mql5
+//+------------------------------------------------------------------+
+//|                                         Trend Chief EA          |
+//|                                                forexroboteasy.com|
+//|                                             Forex Robot Easy Team|
+//+------------------------------------------------------------------+
+
+// Trend Chief EA Parameters
+input int Timeframe = PERIOD_M15; // Timeframe for analysis
+input int BuySignal = 1; // Signal value for buy
+input int SellSignal = -1; // Signal value for sell
+
+//+------------------------------------------------------------------+
+//|                                                                  |
+//|                                                                  |
+//+------------------------------------------------------------------+
+void OnTick()
+{
+   // Check if the current timeframe is m15
+   if (Period() != Timeframe)
+      return;
+
+   // Get the Trend Chief indicator value
+   double trendChiefValue = iCustom(NULL, Timeframe, 'Trend Chief', 0, 0);
+
+   // Check if the trend is bullish
+   if (trendChiefValue == BuySignal)
+   {
+      // Check if the price crosses the main red trend line
+      if (CrossesMainRedTrendLine())
+      {
+         // Check if all other trend lines have turned green
+         if (AllOtherTrendLinesGreen())
+         {
+            // Execute a buy order
+            ExecuteBuyOrder();
+         }
+      }
+   }
+   // Check if the trend is bearish
+   else if (trendChiefValue == SellSignal)
+   {
+      // Check if the price crosses the main green trend line
+      if (CrossesMainGreenTrendLine())
+      {
+         // Check if all other trend lines have turned red
+         if (AllOtherTrendLinesRed())
+         {
+            // Execute a sell order
+            ExecuteSellOrder();
+         }
+      }
+   }
+}
+
+//+------------------------------------------------------------------+
+//| Functions                                                        |
+//+------------------------------------------------------------------+
+bool CrossesMainRedTrendLine()
+{
+   // TODO: Implement logic to check if the price crosses the main red trend line
+   return true;
+}
+
+bool AllOtherTrendLinesGreen()
+{
+   // TODO: Implement logic to check if all other trend lines have turned green
+   return true;
+}
+
+bool CrossesMainGreenTrendLine()
+{
+   // TODO: Implement logic to check if the price crosses the main green trend line
+   return true;
+}
+
+bool AllOtherTrendLinesRed()
+{
+   // TODO: Implement logic to check if all other trend lines have turned red
+   return true;
+}
+
+void ExecuteBuyOrder()
+{
+   // TODO: Implement logic to execute a buy order
+}
+
+void ExecuteSellOrder()
+{
+   // TODO: Implement logic to execute a sell order
+}
